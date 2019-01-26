@@ -5,12 +5,15 @@
 		<title>Go Web Programming</title>
 	</head>
 	<body>
+		<h2>Posts</h2>
 		<ul>
 			{{ range . }}
 			<li>
 				{{ .Id }}
 				{{ .Title }}
 				{{ .Body }}
+				<a href="/posts/{{ .Id }}">Show</a>
+				<a href="/posts/{{ .Id }}/edit">Edit</a>
 			</li>
 			{{ end }}
 		</ul>
