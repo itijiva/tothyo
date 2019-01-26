@@ -1,0 +1,21 @@
+{{ define "posts/new" }}
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Go Web Programming</title>
+	</head>
+	<body>
+
+		<h2>Create Post</h2>
+
+		<form action="/posts/create" method="POST">
+  			<label>Title:</label>
+  			<input type="text" name="title" placeholder="Enter Title">
+  			<lable>Body:</label>
+  			<input type="text" name="body" placeholder="Enter body">
+  			<br><br>
+  			<input type="submit" value="Submit">
+		</form> 
+	</body>
+</html>
+{{ end }}
