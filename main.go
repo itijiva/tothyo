@@ -66,8 +66,19 @@ func EditPost(w http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(w, "posts/edit", post) 
 }
 
+func RootPage(w http.ResponseWriter, r *http.Request) {
+	tmpl, _ := template.New("root.html").ParseFiles("views/root.html")
+
+	tmpl.ExecuteTemplate(w, "root", "") 
+}
+
 func main() {
-	r := mux.NewRouter()
+    r := mux.NewRouter()
+
+    // This will serve files under http://localhost:8000/static/<filename>
+    r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
+	
+	r.HandleFunc("/", RootPage)
 	r.HandleFunc("/posts", PostIndex).Methods("GET")
 	r.HandleFunc("/posts/new", NewPost).Methods("GET")
 	r.HandleFunc("/posts/create", CreatePost).Methods("POST")
